@@ -12,16 +12,22 @@
         </ul>
       </div>
       <div class="cart-action">
-        <input type="text">
+        <NewMessage :name="name" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import NewMessage from '@/components/NewMessage'
+
 export default {
+
   name: 'Chat',
   props: [ 'name' ],
+  components: {
+    NewMessage
+  },
   data() {
     return {
 
@@ -34,5 +40,14 @@ export default {
 .chat h2 {
   font-size: 2.6em;
   margin-bottom: 40px;
+}
+
+.chat span {
+  font-size: 1.4em;
+}
+
+.chat .time {
+  display: block;
+  font-size: 1.2em;
 }
 </style>

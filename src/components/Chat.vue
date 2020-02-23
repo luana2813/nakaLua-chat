@@ -11,7 +11,7 @@
           </li>
         </ul>
       </div>
-      <div class="cart-action">
+      <div class="card-action">
         <NewMessage :name="name" />
       </div>
     </div>

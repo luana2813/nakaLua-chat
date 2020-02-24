@@ -3,11 +3,11 @@
     <h2 class="center pink-text text-darken-3">Chat {{ name }}</h2>
     <div class="card">
       <div class="card-content">
-        <ul class="messages">
-          <li>
-            <span class="pink-text text-darken-3">Name</span>
-            <span class="grey-text">message</span>
-            <span class="grey-text time">time</span>
+        <ul class="messages" v-chat-scroll>
+          <li v-for="message in messages" :key="message.id">
+            <span class="pink-text text-darken-3">{{ message.name }}</span>
+            <span class="grey-text">{{ message.content }}</span>
+            <span class="grey-text time">{{ message.timestamp }}</span>
           </li>
         </ul>
       </div>
@@ -19,29 +19,40 @@
 </template>
 
 <script>
-import NewMessage from '@/components/NewMessage'
-import db from '@/firebase/init'
+import NewMessage from "@/components/NewMessage";
+import db from "@/firebase/init";
+import moment from 'moment'
 
 export default {
-
-  name: 'Chat',
-  props: [ 'name' ],
+  name: "Chat",
+  props: ["name"],
   components: {
     NewMessage
   },
   data() {
     return {
-
-    }
+      messages: []
+    };
   },
   created() {
-    let ref = db.collection('messages')
+    let ref = db.collection("messages").orderBy('timestamp')
 
     ref.onSnapshot(snapshot => {
-      console.log(snapshot.docChanges())
-    })
+      snapshot.docChanges().forEach(change => {
+        if (change.type == "added") {
+          let doc = change.doc
+
+          this.messages.push({
+            id: doc.id,
+            name: doc.data().name,
+            content: doc.data().content,
+            timestamp: moment(doc.data().timestamp).format('lll')
+          })
+        }
+      });
+    });
   }
-}
+};
 </script>
 
 <style>
@@ -56,6 +67,23 @@ export default {
 
 .chat .time {
   display: block;
-  font-size: 1.2em;
+  font-size: 1em;
+}
+
+.messages {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.messages::-webkit-scrollbar{
+  width: 3px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #aaa;
 }
 </style>

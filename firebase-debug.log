@@ -1,0 +1,31 @@
+[debug] [2020-02-24T00:01:31.927Z] ----------------------------------------------------------------------
+[debug] [2020-02-24T00:01:31.932Z] Command:       /home/nakalua/.nvm/versions/node/v13.7.0/bin/node /home/nakalua/.nvm/versions/node/v13.7.0/bin/firebase deploy
+[debug] [2020-02-24T00:01:31.933Z] CLI Version:   7.12.1
+[debug] [2020-02-24T00:01:31.933Z] Platform:      linux
+[debug] [2020-02-24T00:01:31.933Z] Node Version:  v13.7.0
+[debug] [2020-02-24T00:01:31.934Z] Time:          Sun Feb 23 2020 21:01:31 GMT-0300 (Brasilia Standard Time)
+[debug] [2020-02-24T00:01:31.934Z] ----------------------------------------------------------------------
+[debug] [2020-02-24T00:01:31.934Z] 
+[debug] [2020-02-24T00:01:31.951Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-24T00:01:31.952Z] > authorizing via signed-in user
+[debug] [2020-02-24T00:01:31.953Z] [iam] checking project nakalua-chat for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-02-24T00:01:31.955Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-02-24T00:01:31.956Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-02-24T00:01:32.324Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-24T00:01:32.397Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/nakalua-chat:testIamPermissions  
+
+[debug] [2020-02-24T00:01:32.715Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-24T00:01:32.718Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/nakalua-chat  
+ 
+[debug] [2020-02-24T00:02:02.735Z] Server Error. ETIMEDOUT
+[debug] [2020-02-24T00:02:04.095Z] FirebaseError: Server Error. ETIMEDOUT
+    at Request._callback (/home/nakalua/.nvm/versions/node/v13.7.0/lib/node_modules/firebase-tools/lib/api.js:30:31)
+    at self.callback (/home/nakalua/.nvm/versions/node/v13.7.0/lib/node_modules/firebase-tools/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:321:20)
+    at Request.EventEmitter.emit (domain.js:485:12)
+    at Timeout._onTimeout (/home/nakalua/.nvm/versions/node/v13.7.0/lib/node_modules/firebase-tools/node_modules/request/request.js:852:16)
+    at listOnTimeout (internal/timers.js:549:17)
+    at processTimers (internal/timers.js:492:7)
+[error] 
+[error] Error: Failed to get Firebase project nakalua-chat. Please make sure the project exists and your account has permission to access it.
